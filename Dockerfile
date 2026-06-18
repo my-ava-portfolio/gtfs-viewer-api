@@ -2,7 +2,7 @@
 
 # Build Stage
 # First pull Golang image
-FROM --platform=linux/arm64 golang:1.19-alpine as build-env
+FROM golang:1.19-alpine as build-env
  
 # Set environment variable
 ENV APP_NAME app
@@ -16,7 +16,7 @@ WORKDIR $GOPATH/src/$APP_NAME
 RUN CGO_ENABLED=0 go build -v -o /$APP_NAME $GOPATH/src/$APP_NAME/$MAIN_FILE_PATH
  
 # Run Stage
-FROM --platform=linux/arm64 alpine:3.17.1
+FROM alpine:3.17.1
  
 # Set environment variable
 ENV APP_NAME app
